@@ -21,7 +21,7 @@
 
 # :iphone: 위젯 버스
 
-앱 설명 들어가는 곳
+앱 설명 들어가는 곳 
 
 
 ## :pushpin: Features
