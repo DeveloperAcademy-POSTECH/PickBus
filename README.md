@@ -19,7 +19,7 @@
 <p align="center" text-align="center" display="inline-block">Apple Developer Academy MacC Dudu</p>
 
 
-# :iphone: 위젯 버스
+# :iphone: 위젯 버스 
 
 앱 설명 들어가는 곳
 
