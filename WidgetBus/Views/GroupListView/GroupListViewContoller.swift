@@ -21,7 +21,6 @@ final class GroupListViewContoller: UIViewController {
     // Group Array
     var coreDataGroups = [Group]()
 
-
     // 그룹 리스트 테이블
     private lazy var groupListView: UITableView = {
         let groupList = UITableView(frame: .zero, style: .plain)
@@ -91,6 +90,11 @@ final class GroupListViewContoller: UIViewController {
             setupTableView()
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.view.backgroundColor = .white
+    }
 }
 
 private extension GroupListViewContoller {
@@ -111,7 +115,8 @@ private extension GroupListViewContoller {
         barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 30).isActive = true
         barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 30).isActive = true
         self.navigationItem.rightBarButtonItem = barButtonItem
-
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.view.backgroundColor = .white
     }
 
     @objc func pressButton(_ sender: UIBarButtonItem) {

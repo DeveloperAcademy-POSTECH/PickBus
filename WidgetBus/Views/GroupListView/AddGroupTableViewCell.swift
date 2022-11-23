@@ -8,33 +8,41 @@
 import UIKit
 
 class AddGroupTableViewCell: UITableViewCell {
-//    static let identifier = "AddGroupTableViewCell"
 
     private lazy var groupListAddLabel: UILabel = {
-        let label = UILabel()
+          let label = UILabel()
         let attachment = NSTextAttachment()
         attachment.image = UIImage(systemName: "plus")
+        attachment.bounds = CGRect(x: 0, y: 0, width: 40, height: 38)
         let attachmentString = NSAttributedString(attachment: attachment)
         let contentString = NSMutableAttributedString(string: "")
         contentString.append(attachmentString)
         label.attributedText = contentString
-
+        label.sizeToFit()
+//        label.text = "+"
+//        label.font = .systemFont(ofSize: 70, weight: .bold)
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 10, weight: .bold)
         label.textColor = .white
-        label.textAlignment = .center
-        label.backgroundColor = UIColor(red: 44/255.0, green: 53/255.0, blue: 122/255.0, alpha: 1.0)
+        label.backgroundColor = .duduDeepBlue
         label.layer.masksToBounds = true
         label.layer.opacity = 0.3
-        label.layer.borderWidth = 1
         label.layer.cornerRadius = 15
         label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowOpacity = 0.8
         label.layer.shadowOffset = CGSize(width: 2, height: 20)
         label.layer.shadowRadius = 2.0
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.sizeToFit()
 
         return label
+    }()
+
+    private lazy var addImageView: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "duduPlus")
+        image.translatesAutoresizingMaskIntoConstraints = false
+
+        return image
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -53,5 +61,6 @@ class AddGroupTableViewCell: UITableViewCell {
         groupListAddLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -15)
             .isActive = true
         groupListAddLabel.heightAnchor.constraint(equalToConstant: 75).isActive = true
+
     }
 }

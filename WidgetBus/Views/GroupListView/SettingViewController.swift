@@ -19,7 +19,7 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
 
     lazy var notiSetting: UISwitch = {
         let noti = UISwitch()
-        noti.tintColor = UIColor.orange
+        noti.tintColor = UIColor.green
         noti.isOn = false
         noti.addTarget(self, action: #selector(onClickSwitch(sender:)), for: UIControl.Event.valueChanged)
         return noti
@@ -27,6 +27,7 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupLayout()
         setupNavigationController()
         let notiText: UILabel = notiLabel
@@ -44,11 +45,6 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
             UIApplication.shared.registerForRemoteNotifications()
             notiText.text = "알림 설정 Off"
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.tintColor = .black
     }
 
     @objc func onClickSwitch(sender: UISwitch) {
@@ -86,7 +82,7 @@ private extension SettingViewController {
     func setupLayout() {
         view.addSubview(notiSetting)
         notiSetting.translatesAutoresizingMaskIntoConstraints = false
-        notiSetting.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        notiSetting.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         notiSetting.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
 
         view.addSubview(notiLabel)

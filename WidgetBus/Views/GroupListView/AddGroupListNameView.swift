@@ -13,7 +13,7 @@ final class AddGroupListNameViewController: UIViewController {
     private let backgroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 44/255.0, green: 53/255.0, blue: 122/255.0, alpha: 1.0)
+        view.backgroundColor = .duduDeepBlue
 
         return view
     }()
@@ -83,21 +83,10 @@ final class AddGroupListNameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.groupListTextfield.delegate = self
+
+        setupNavigationController()
         setupLayout()
 
-        let backButton = UIBarButtonItem()
-        backButton.tintColor = .white
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
-
-        let rightButton = UIBarButtonItem(
-            title: "다음",
-            style: .plain,
-            target: self,
-            action: #selector(pressButton(_:))
-        )
-        navigationItem.rightBarButtonItem = rightButton
-        navigationItem.rightBarButtonItem?.isEnabled = false
-        navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -123,7 +112,7 @@ private extension AddGroupListNameViewController {
         backgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
 
         backgroundView.addSubview(titleLabel)
-        titleLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 70).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 0).isActive = true
         titleLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: backgroundView.widthAnchor).isActive = true
@@ -175,4 +164,30 @@ extension AddGroupListNameViewController: UITextFieldDelegate {
         guard groupListTextfield.text!.count < 17 else { return false }
         return true
         }
+}
+
+private extension AddGroupListNameViewController {
+    func setupNavigationController() {
+        let button = UIButton(type: .system)
+        let barButtonItem = UIBarButtonItem(customView: button)
+        barButtonItem.customView?.translatesAutoresizingMaskIntoConstraints = false
+        barButtonItem.customView?.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        barButtonItem.customView?.widthAnchor.constraint(equalToConstant: 40).isActive = true
+
+        self.navigationItem.rightBarButtonItem = barButtonItem
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.view.backgroundColor = .duduDeepBlue
+
+        let rightButton = UIBarButtonItem(
+            title: "다음",
+            style: .plain,
+            target: self,
+            action: #selector(pressButton(_:))
+        )
+
+        navigationItem.rightBarButtonItem = rightButton
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        navigationItem.rightBarButtonItem?.tintColor = .white
+    }
 }
