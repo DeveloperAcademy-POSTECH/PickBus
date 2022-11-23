@@ -12,7 +12,7 @@ struct GroupListArray: Decodable {
     let groupName: String
 }
 final class GroupListViewContoller: UIViewController {
-    let initMain = false
+    let initMain = true
     var groupName = ["출근길", "퇴근길", "백화점으로", "어디로", "시장으로", "제주도로", "어디로가죠", "저도 모르는 곳으로 가요"]
 
     // CoreData 컨트롤러
@@ -49,9 +49,11 @@ final class GroupListViewContoller: UIViewController {
     // 메인 그룹 추가 버튼
     private lazy var addButton: UIButton = {
         let addButton = UIButton()
-        addButton.setTitle("추가하기", for: .normal)
+
+        addButton.setTitle("+", for: .normal)
         addButton.setTitleColor(.white, for: .normal)
-        addButton.backgroundColor = UIColor(red: 44/255.0, green: 53/255.0, blue: 122/255.0, alpha: 1.0)
+        addButton.backgroundColor = .duduDeepBlue
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: 50)
         addButton.layer.opacity = 0.4
         addButton.layer.cornerRadius = 15
         addButton.layer.shadowColor = UIColor.black.cgColor
@@ -131,7 +133,7 @@ private extension GroupListViewContoller {
 
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
         mainLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        mainLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        mainLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -120).isActive = true
 
         self.view.addSubview(addButton)
 
