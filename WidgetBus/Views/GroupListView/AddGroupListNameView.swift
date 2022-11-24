@@ -9,6 +9,9 @@ import UIKit
 
 final class AddGroupListNameViewController: UIViewController {
 
+    // CoreData Controller
+    var dataController: DataController!
+
     // 바탕 뷰
     private let backgroundView: UIView = {
         let view = UIView()
@@ -98,8 +101,22 @@ final class AddGroupListNameViewController: UIViewController {
     }
 
     @objc func pressButton(_ sender: UIBarButtonItem) {
-        let settingView = GroupListViewContoller()
-        self.navigationController?.pushViewController(settingView, animated: true)
+        guard let groupName = self.groupListTextfield.text else {
+            return
+        }
+
+        let newGroup = Group(context: dataController.viewContext)
+        newGroup.id = UUID()
+        newGroup.name = groupName
+        let storyboard = UIStoryboard(name: "SelectStartNodeView", bundle: nil)
+        let selectStartNodeViewController =
+        storyboard.instantiateViewController(
+            withIdentifier: "SelectStartNodeView") as! SelectStartNodeViewController
+
+        selectStartNodeViewController.dataController = dataController
+        selectStartNodeViewController.newGroup = newGroup
+
+        self.navigationController?.pushViewController(selectStartNodeViewController, animated: true)
     }
 }
 
@@ -163,7 +180,7 @@ extension AddGroupListNameViewController: UITextFieldDelegate {
     ) -> Bool {
         guard groupListTextfield.text!.count < 17 else { return false }
         return true
-        }
+    }
 }
 
 private extension AddGroupListNameViewController {

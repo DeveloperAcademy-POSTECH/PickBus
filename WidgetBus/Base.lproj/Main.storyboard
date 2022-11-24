@@ -51,6 +51,14 @@
             </objects>
             <point key="canvasLocation" x="32.824427480916029" y="-27.464788732394368"/>
         </scene>
+        <!--SelectStartNodeView-->
+        <scene sceneID="OOL-y1-uEq">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="SelectStartNodeViewController" storyboardName="SelectStartNodeView" referencedIdentifier="SelectStartNodeView" id="J8z-y7-hhl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ISJ-Dm-5nw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="736" y="-137"/>
+        </scene>
         <!--SelectStartNodeViewController-->
         <scene sceneID="pMi-dr-Vhr">
             <objects>

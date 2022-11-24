@@ -145,8 +145,11 @@ private extension GroupListViewContoller {
         addButton.addTarget(self, action: #selector(btnAddGroupList(_:)), for: .touchUpInside)
     }
 
+    // 데이터 없을 때, 여기 추가.
     @objc func btnAddGroupList(_ sender: UIButton) {
         let addGroupListNameView = AddGroupListNameViewController()
+        addGroupListNameView.dataController = dataController
+
         self.navigationController?.pushViewController(addGroupListNameView, animated: true)
     }
 }
@@ -165,12 +168,18 @@ private extension GroupListViewContoller {
 extension GroupListViewContoller: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 데이터 있을 때, 여기 추가.
         if indexPath.row == groupName.count {
-            let settingView = AddGroupListNameViewController()
-            self.navigationController?.pushViewController(settingView, animated: true)
+            let addGroupListNameView = AddGroupListNameViewController()
+            addGroupListNameView.dataController = dataController
+
+            self.navigationController?.pushViewController(addGroupListNameView, animated: true)
+
+
         } else {
             let settingView = SettingViewController()
             self.navigationController?.pushViewController(settingView, animated: true)
+
         }
     }
 }

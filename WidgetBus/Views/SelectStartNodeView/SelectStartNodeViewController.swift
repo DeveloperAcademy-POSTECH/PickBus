@@ -12,6 +12,10 @@ final class SelectStartNodeViewController: UIViewController, UITableViewDelegate
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var busNodeSearchTextField: UITextField!
 
+    // CoreData Controller
+    var dataController: DataController!
+    var newGroup: Group!
+
     @IBAction private func didKeyboardEndOnExit(_ sender: Any) {
         // 키보드 완료 버튼 눌렀을 때 busNodeSearchTextField.text를 이용해 API 호출
         workItem?.cancel()
