@@ -45,8 +45,6 @@
 		CF3D0A362929B4C500639E5C /* CityCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D0A352929B4C500639E5C /* CityCode.swift */; };
 		CF3D0A382929CC1B00639E5C /* SearchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D0A372929CC1B00639E5C /* SearchNode.swift */; };
 		CF3D0A3A292A2B9700639E5C /* MySearchNodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D0A39292A2B9700639E5C /* MySearchNodeInfo.swift */; };
-		CFA1F6382935E18400D1C513 /* AllRoutesFromNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1F6372935E18400D1C513 /* AllRoutesFromNode.swift */; };
-		CFA1F63C2935EA5D00D1C513 /* MyAllRoutesFromNodeMultiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFA1F63B2935EA5D00D1C513 /* MyAllRoutesFromNodeMultiType.swift */; };
 		CFD79B04291E45050091202C /* Service Key.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFD79B03291E45050091202C /* Service Key.plist */; };
 		CFE0A864291CCB11002779C6 /* SelectRouteNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0A863291CCB11002779C6 /* SelectRouteNumberViewController.swift */; };
 		CFE0A867291CCD15002779C6 /* ArriveInfoFromBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE0A866291CCD15002779C6 /* ArriveInfoFromBusStop.swift */; };
@@ -130,8 +128,6 @@
 		CF3D0A352929B4C500639E5C /* CityCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCode.swift; sourceTree = "<group>"; };
 		CF3D0A372929CC1B00639E5C /* SearchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNode.swift; sourceTree = "<group>"; };
 		CF3D0A39292A2B9700639E5C /* MySearchNodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySearchNodeInfo.swift; sourceTree = "<group>"; };
-		CFA1F6372935E18400D1C513 /* AllRoutesFromNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllRoutesFromNode.swift; sourceTree = "<group>"; };
-		CFA1F63B2935EA5D00D1C513 /* MyAllRoutesFromNodeMultiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAllRoutesFromNodeMultiType.swift; sourceTree = "<group>"; };
 		CFD79B03291E45050091202C /* Service Key.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Service Key.plist"; sourceTree = "<group>"; };
 		CFE0A863291CCB11002779C6 /* SelectRouteNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRouteNumberViewController.swift; sourceTree = "<group>"; };
 		CFE0A866291CCD15002779C6 /* ArriveInfoFromBusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArriveInfoFromBusStop.swift; sourceTree = "<group>"; };
@@ -323,9 +319,6 @@
 				CFFDB0A329260591007AE8C3 /* RouteInformation.swift */,
 				CFFDB0A529262701007AE8C3 /* BusLocationsOnRoute.swift */,
 				CF3C88E8292669B20069E8CE /* SpecificArrive.swift */,
-				CFA1F6372935E18400D1C513 /* AllRoutesFromNode.swift */,
-				CF2F036E2931ACAC00414507 /* StringMultiType.swift */,
-				CFA1F63B2935EA5D00D1C513 /* MyAllRoutesFromNodeMultiType.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -639,7 +632,6 @@
 				C175CD26292CA0EF00140CDC /* BusData.swift in Sources */,
 				CF3D0A3A292A2B9700639E5C /* MySearchNodeInfo.swift in Sources */,
 				CFEC63D32928B67E00B75795 /* DataController.swift in Sources */,
-				CFA1F63C2935EA5D00D1C513 /* MyAllRoutesFromNodeMultiType.swift in Sources */,
 				099287E82924B23800CB7DBE /* SelectArrivalViewController.swift in Sources */,
 				099287E72924B23800CB7DBE /* ArrivalTableViewCell.swift in Sources */,
 				099287E42924B22A00CB7DBE /* ArrivalNodeModel.swift in Sources */,
@@ -657,7 +649,6 @@
 				D784808E291E1B9C009F8FDB /* NSObject+.swift in Sources */,
 				C175CD0F292B719900140CDC /* AddGroupTableViewCell.swift in Sources */,
 				C175CD0B292B719900140CDC /* SettingViewController.swift in Sources */,
-				CFA1F6382935E18400D1C513 /* AllRoutesFromNode.swift in Sources */,
 				C175CD29292CA0EF00140CDC /* AddRouteCell.swift in Sources */,
 				C175CD0C292B719900140CDC /* AddGroupListNameView.swift in Sources */,
 				C16920612907B75C0021D17F /* AppDelegate.swift in Sources */,
