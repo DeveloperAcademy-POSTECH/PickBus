@@ -32,6 +32,7 @@ class BusClient {
         case getRouteInformation(city: String, routeId: String)
         case getBusLocationsOnRoute(city: String, routeId: String)
         case getSpecificArrive(city: String, routeId: String, nodeId: String)
+        case getAllRoutesFromNode(city: String, nodeId: String)
 
         var stringValue: String {
             switch self {
@@ -40,6 +41,12 @@ class BusClient {
                 "/1613000/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList" +
                 Endpoints.apiKeyParam +
                 "&_type=json&cityCode=\(city)&nodeId=\(busStopId)&numOfRows=99"
+
+            case .getAllRoutesFromNode(let city, let nodeId):
+                return Endpoints.base +
+                "/1613000/BusSttnInfoInqireService/getSttnThrghRouteList" +
+                Endpoints.apiKeyParam +
+                "&_type=json&cityCode=\(city)&nodeid=\(nodeId)&numOfRows=99"
 
             case .getCityCodeList:
                 return Endpoints.base +
@@ -198,6 +205,21 @@ class BusClient {
                 responseType: ArriveInfoFromBusStop.self) { response, error in
                     if let response = response {
                         completion(response.response.body.items.item, nil)
+                    } else {
+                        completion([], error)
+                    }
+                }
+        }
+
+    class func getAllRoutesFromNode(
+        city: String = "25",
+        nodeId: String = "DJB8001793",
+        completion: @escaping ([AllRoutesFromNodeInfo], Error?) -> Void) {
+            _ = taskForGETRequest(
+                url: Endpoints.getAllRoutesFromNode(city: city, nodeId: nodeId).url,
+                responseType: AllRoutesFromNode.self) { response, error in
+                    if let response = response {
+                        completion(response.response.body.items.item.listValue, nil)
                     } else {
                         completion([], error)
                     }
