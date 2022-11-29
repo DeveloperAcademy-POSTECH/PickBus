@@ -35,9 +35,9 @@ struct SearchNodeResponseItem: Decodable {
 
 struct SearchNodeInfo: Decodable {
     /// WGS84 위도 좌표
-    let gpslati: StringMultiType
+    let gpslati: Double
     /// WGS84 경도 좌표
-    let gpslong: StringMultiType
+    let gpslong: Double
     /// 정류장 ID
     let nodeid: String
     /// 정류장 이름

@@ -7,17 +7,6 @@
 
 import UIKit
 
-struct TmpStruct {
-    /// cityCode
-    var cityCode: String
-    /// 정류장 ID
-    var nodeid: String
-    /// 정류장 이름
-    var nodenm: String
-    /// 정류장 번호
-    var nodeno: Int
-}
-
 final class SelectStartNodeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet private weak var tableView: UITableView!
@@ -26,7 +15,6 @@ final class SelectStartNodeViewController: UIViewController, UITableViewDelegate
     // CoreData Controller
     var dataController: DataController!
     var newGroup: Group!
-    var temp = TmpStruct(cityCode: "", nodeid: "", nodenm: "", nodeno: -1)
 
     @IBAction private func didKeyboardEndOnExit(_ sender: Any) {
         // 키보드 완료 버튼 눌렀을 때 busNodeSearchTextField.text를 이용해 API 호출
@@ -81,41 +69,11 @@ final class SelectStartNodeViewController: UIViewController, UITableViewDelegate
         busNodeSearchTextField.layer.borderColor = UIColor.duduDeepBlue?.cgColor
         busNodeSearchTextField.addLeftPadding()
 
-        let rightButton = UIBarButtonItem(
-            title: "다음",
-            style: .plain,
-            target: self,
-            action: #selector(pressButton(_:))
-        )
-        navigationItem.rightBarButtonItem = rightButton
-        navigationItem.rightBarButtonItem?.isEnabled = true
-        navigationItem.rightBarButtonItem?.tintColor = .white
-
         // 도시 코드 가져오기
         getCityCode()
 
         settingDefaultTableView()
         addDefaultKeyboardObserver()
-    }
-
-    @objc func pressButton(_ sender: UIBarButtonItem) {
-
-        let storyboard = UIStoryboard(name: "RouteNumberViewStoryboard", bundle: nil)
-        let selectRouteNodeViewController =
-        storyboard.instantiateViewController(
-            withIdentifier: "SelectRouteNumberViewController") as! SelectRouteNumberViewController
-
-        let newNode = Node(context: dataController.viewContext)
-        newNode.cityCode = temp.cityCode
-        newNode.nodeId = temp.nodeid
-        newNode.nodeNm = temp.nodenm
-        newNode.nodeNo = String(temp.nodeno)
-
-        selectRouteNodeViewController.dataController = dataController
-        selectRouteNodeViewController.newGroup = newGroup
-        selectRouteNodeViewController.newNode = newNode
-
-        self.navigationController?.pushViewController(selectRouteNodeViewController, animated: true)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -296,12 +254,6 @@ final class SelectStartNodeViewController: UIViewController, UITableViewDelegate
             print(cityCode!)
             print(cityCodeDictionary[cityCode!] ?? "Nil_")
             print(response)
-
-            temp.cityCode = String(cityCode ?? -1)
-            temp.nodeno = response[0].nodeno
-            temp.nodeid = response[0].nodeid
-            temp.nodenm = response[0].nodenm
-
         }
     }
 
