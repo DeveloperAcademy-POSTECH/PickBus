@@ -51,44 +51,6 @@
             </objects>
             <point key="canvasLocation" x="32.824427480916029" y="-27.464788732394368"/>
         </scene>
-        <!--SelectStartNodeView-->
-        <scene sceneID="OOL-y1-uEq">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SelectStartNodeViewController" storyboardName="SelectStartNodeView" referencedIdentifier="SelectStartNodeView" id="J8z-y7-hhl" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ISJ-Dm-5nw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="736" y="-137"/>
-        </scene>
-        <!--SelectStartNodeViewController-->
-        <scene sceneID="pMi-dr-Vhr">
-            <objects>
-                <viewControllerPlaceholder storyboardName="SelectStartNodeView" referencedIdentifier="SelectStartNodeViewController" id="j7y-vn-diP" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="TU5-RY-cnb"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IdD-OP-hOT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="736" y="-46"/>
-        </scene>
-        <!--SelectRouteNumberViewController-->
-        <scene sceneID="Mlw-ct-bPs">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SelectRouteNumberViewController" storyboardName="RouteNumberViewStoryboard" referencedIdentifier="SelectRouteNumberViewController" id="em8-0h-ovx" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="tv5-os-JG5"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CSq-U7-rrD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="753" y="-10"/>
-        </scene>
-        <!--RouteDetailView-->
-        <scene sceneID="EpQ-0e-eku">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="RouteDetailView" storyboardName="RouteDetailView" id="PAY-MO-Xp7" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ITV-Ld-iI1"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J0D-Sk-IFK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="750" y="84"/>
-        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">

@@ -10,7 +10,7 @@ import Foundation
 // Dummy-data
 
 // 정류장
-struct Node {
+struct Nodee {
     var cityCode: String
     var nodeId: String
     var nodeNm: String

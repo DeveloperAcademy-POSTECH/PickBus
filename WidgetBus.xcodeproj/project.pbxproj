@@ -41,6 +41,8 @@
 		C1B745652923699400167496 /* SelectStartNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B745642923699400167496 /* SelectStartNodeViewController.swift */; };
 		C1FDE97B2923650000CD6281 /* SelectStartNodeView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FDE97A2923650000CD6281 /* SelectStartNodeView.storyboard */; };
 		CF251EB929227BE300785682 /* BusLocationFromBusStop.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF251EB829227BE300785682 /* BusLocationFromBusStop.swift */; };
+		CF2F036F2931ACAC00414507 /* StringMultiType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F036E2931ACAC00414507 /* StringMultiType.swift */; };
+		CF2F03712931B9AC00414507 /* ArriveInfoMultiTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2F03702931B9AC00414507 /* ArriveInfoMultiTypes.swift */; };
 		CF3C88E9292669B20069E8CE /* SpecificArrive.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C88E8292669B20069E8CE /* SpecificArrive.swift */; };
 		CF3D0A362929B4C500639E5C /* CityCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D0A352929B4C500639E5C /* CityCode.swift */; };
 		CF3D0A382929CC1B00639E5C /* SearchNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3D0A372929CC1B00639E5C /* SearchNode.swift */; };
@@ -124,6 +126,8 @@
 		C1B745642923699400167496 /* SelectStartNodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStartNodeViewController.swift; sourceTree = "<group>"; };
 		C1FDE97A2923650000CD6281 /* SelectStartNodeView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SelectStartNodeView.storyboard; sourceTree = "<group>"; };
 		CF251EB829227BE300785682 /* BusLocationFromBusStop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusLocationFromBusStop.swift; sourceTree = "<group>"; };
+		CF2F036E2931ACAC00414507 /* StringMultiType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringMultiType.swift; sourceTree = "<group>"; };
+		CF2F03702931B9AC00414507 /* ArriveInfoMultiTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArriveInfoMultiTypes.swift; sourceTree = "<group>"; };
 		CF3C88E8292669B20069E8CE /* SpecificArrive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificArrive.swift; sourceTree = "<group>"; };
 		CF3D0A352929B4C500639E5C /* CityCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCode.swift; sourceTree = "<group>"; };
 		CF3D0A372929CC1B00639E5C /* SearchNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNode.swift; sourceTree = "<group>"; };
@@ -316,9 +320,11 @@
 				CF3D0A352929B4C500639E5C /* CityCode.swift */,
 				CF3D0A372929CC1B00639E5C /* SearchNode.swift */,
 				CF3D0A39292A2B9700639E5C /* MySearchNodeInfo.swift */,
+				CF2F03702931B9AC00414507 /* ArriveInfoMultiTypes.swift */,
 				CFFDB0A329260591007AE8C3 /* RouteInformation.swift */,
 				CFFDB0A529262701007AE8C3 /* BusLocationsOnRoute.swift */,
 				CF3C88E8292669B20069E8CE /* SpecificArrive.swift */,
+				CF2F036E2931ACAC00414507 /* StringMultiType.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -644,12 +650,14 @@
 				E12150D9291F910A000440F8 /* RouteDetailTableViewCell.swift in Sources */,
 				C16920652907B75C0021D17F /* ViewController.swift in Sources */,
 				D7103DF4292218E900DA7CDD /* UIColor+.swift in Sources */,
+				CF2F03712931B9AC00414507 /* ArriveInfoMultiTypes.swift in Sources */,
 				CF3D0A382929CC1B00639E5C /* SearchNode.swift in Sources */,
 				C1B745652923699400167496 /* SelectStartNodeViewController.swift in Sources */,
 				D784808E291E1B9C009F8FDB /* NSObject+.swift in Sources */,
 				C175CD0F292B719900140CDC /* AddGroupTableViewCell.swift in Sources */,
 				C175CD0B292B719900140CDC /* SettingViewController.swift in Sources */,
 				C175CD29292CA0EF00140CDC /* AddRouteCell.swift in Sources */,
+				CF2F036F2931ACAC00414507 /* StringMultiType.swift in Sources */,
 				C175CD0C292B719900140CDC /* AddGroupListNameView.swift in Sources */,
 				C16920612907B75C0021D17F /* AppDelegate.swift in Sources */,
 				C16920632907B75C0021D17F /* SceneDelegate.swift in Sources */,

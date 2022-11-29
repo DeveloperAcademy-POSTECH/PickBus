@@ -108,6 +108,7 @@ final class AddGroupListNameViewController: UIViewController {
         let newGroup = Group(context: dataController.viewContext)
         newGroup.id = UUID()
         newGroup.name = groupName
+
         let storyboard = UIStoryboard(name: "SelectStartNodeView", bundle: nil)
         let selectStartNodeViewController =
         storyboard.instantiateViewController(

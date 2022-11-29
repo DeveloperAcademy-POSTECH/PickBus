@@ -194,10 +194,10 @@ class BusClient {
         nodeId: String = "DJB8001793",
         completion: @escaping ([ArriveInfoResponseArriveInfo], Error?) -> Void) {
             _ = taskForGETRequest(
-                url: Endpoints.getArriveList(city: city, busStopId: busstopId).url,
+                url: Endpoints.getArriveList(city: city, busStopId: nodeId).url,
                 responseType: ArriveInfoFromBusStop.self) { response, error in
                     if let response = response {
-                        completion(response.response.body.items.item, nil)
+                        completion(response.response.body.items.item.listValue, nil)
                     } else {
                         completion([], error)
                     }

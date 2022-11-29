@@ -34,9 +34,9 @@ struct RouteNodesResponseItem: Decodable {
 
 struct RouteNodesInfo: Decodable {
     /// WGS84 위도 좌표
-    let gpslati: Double
+    let gpslati: StringMultiType
     /// WGS84 경도 좌표
-    let gpslong: Double
+    let gpslong: StringMultiType
     /// 정류소 ID
     let nodeid: String
     /// 정류소 명

@@ -16,9 +16,9 @@ final class RouteListViewController: UIViewController {
     private var groupTitle: String = "출근"
 
     // 정류장
-    private var nodes: [Node] = [
-        Node(cityCode: "25", nodeId: "DJB8001793", nodeNm: "송강전통시장"),
-        Node(cityCode: "25", nodeId: "DJB8001193", nodeNm: "궁동")
+    private var nodes: [Nodee] = [
+        Nodee(cityCode: "25", nodeId: "DJB8001793", nodeNm: "송강전통시장"),
+        Nodee(cityCode: "25", nodeId: "DJB8001193", nodeNm: "궁동")
     ]
 
     // 버스
@@ -34,6 +34,10 @@ final class RouteListViewController: UIViewController {
 
     // Timer 객체 생성
     private var apiTimer = Timer()
+
+    // 코어 데이터
+    var dataController: DataController!
+    var myGroup: Group!
 
     // 셀 높이
     private let routeHeaderCellHeight: CGFloat = 35
@@ -124,7 +128,8 @@ final class RouteListViewController: UIViewController {
 
     // 뒤로가기
     @objc private func pressedBackButton(_ sender: UIButton!) {
-        navigationController?.popViewController(animated: true)
+//        navigationController?.popViewController(animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
     // 편집하기
@@ -151,7 +156,7 @@ final class RouteListViewController: UIViewController {
         for node in nodes {
             BusClient.getArriveList(
                 city: node.cityCode,
-                busstopId: node.nodeId,
+                nodeId: node.nodeId,
                 completion: fatchArriveInfo(response:error:)
             )
         }
@@ -165,7 +170,7 @@ final class RouteListViewController: UIViewController {
             guard let nodeIndex = index[response[0].nodeid] else { fatalError() }
             for routeN in routes[nodeIndex].indices {
                 let newRouteInfo = response.filter {
-                    $0.routeno == routes[nodeIndex][routeN].routeNo}.first
+                    $0.routeno.stringValue == String(routes[nodeIndex][routeN].routeNo) }.first
                 routes[nodeIndex][routeN].routeArr = newRouteInfo?.arrtime
                 routes[nodeIndex][routeN].routearrprevstationcnt = newRouteInfo?.arrprevstationcnt
             }
