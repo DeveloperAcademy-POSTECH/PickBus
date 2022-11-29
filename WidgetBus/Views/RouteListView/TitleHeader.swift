@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class TitleHeader: UITableViewHeaderFooterView {
+class TitleHeader: UITableViewHeaderFooterView {
 
     // 정류장이름
     let busStopLabel: UILabel = {
@@ -32,8 +32,8 @@ final class TitleHeader: UITableViewHeaderFooterView {
         self.contentView.addSubview(busStopLabel)
 
         NSLayoutConstraint.activate([
-            self.busStopLabel.topAnchor.constraint(equalTo: self.topAnchor),
-            self.busStopLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            self.busStopLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            self.busStopLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
         ])
     }
 }

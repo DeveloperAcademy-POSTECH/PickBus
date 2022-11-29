@@ -7,38 +7,15 @@
 
 import UIKit
 
-final class RouteListViewController: UIViewController {
+class RouteListViewController: UIViewController {
 
-    // API 횟수
-    private var nodeCount: Int = 0
-
-    // 그룹 이름
-    private var groupTitle: String = "출근"
-
-    // 정류장
-    private var nodes: [Node] = [
-        Node(cityCode: "25", nodeId: "DJB8001793", nodeNm: "송강전통시장"),
-        Node(cityCode: "25", nodeId: "DJB8001193", nodeNm: "궁동")
-    ]
-
-    // 버스
-    private var routes: [[Route]] = [
-        [Route(routeNo: 301), Route(routeNo: 802), Route(routeNo: 5)],
-        [Route(routeNo: 104), Route(routeNo: 105)]
-    ]
-
-    private var index: [String: Int] = [
-        "DJB8001793": 0,
-        "DJB8001193": 1
-    ]
-
-    // Timer 객체 생성
-    private var apiTimer = Timer()
+    // 더미 데이터
+    var busStops = BusData.busStops
 
     // 셀 높이
-    private let routeHeaderCellHeight: CGFloat = 35
-    private let routeCellHeight: CGFloat = 50
-    private let addRouteCellHeight: CGFloat = 78
+    let routeHeaderCellHeight: CGFloat = 35
+    let routeCellHeight: CGFloat = 50
+    let addRouteCellHeight: CGFloat = 78
 
     // 루트테이블 뷰
     private let routeTableView: UITableView = {
@@ -60,23 +37,13 @@ final class RouteListViewController: UIViewController {
         table.register(BusStopCell.self, forCellReuseIdentifier: BusStopCell.identifier)
         table.register(RouteCell.self, forCellReuseIdentifier: RouteCell.identifier)
         table.register(AddRouteCell.self, forCellReuseIdentifier: AddRouteCell.identifier)
+
         return table
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .duduDeepBlue
-
-        // 타이머 실행전 1회 api 호출
-        requestArriveInfo()
-
-        // 타이머 설정 - 30초마다 api 호출
-        apiTimer = Timer.scheduledTimer(
-            timeInterval: 30,
-            target: self,
-            selector: #selector(updatedTimer(sender:)),
-            userInfo: nil, repeats: true
-        )
 
         setupNavigationBar()
         setupLayout()
@@ -88,6 +55,7 @@ final class RouteListViewController: UIViewController {
 
     private func setupNavigationBar() {
         // 타이틀 설정
+        title = "포스텍"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
 
         // back 버튼
@@ -138,83 +106,27 @@ final class RouteListViewController: UIViewController {
             self.routeTableView.setEditing(true, animated: true)
         }
     }
-
-    // 버스정보 API 호출
-    @objc func updatedTimer(sender: Timer) {
-        // API를 호출함수 호출
-        print("30초가 경과하여 updateRouteInfo 함수가 실행되었습니다.")
-        requestArriveInfo()
-    }
-
-    // API 호출
-    func requestArriveInfo() {
-        for node in nodes {
-            BusClient.getArriveList(
-                city: node.cityCode,
-                busstopId: node.nodeId,
-                completion: fatchArriveInfo(response:error:)
-            )
-        }
-
-    }
-
-    func fatchArriveInfo(response: [ArriveInfoResponseArriveInfo], error: Error?) {
-        if error == nil {
-            // 성공
-            print("response", response)
-            guard let nodeIndex = index[response[0].nodeid] else { fatalError() }
-            for routeN in routes[nodeIndex].indices {
-                let newRouteInfo = response.filter {
-                    $0.routeno == routes[nodeIndex][routeN].routeNo}.first
-                routes[nodeIndex][routeN].routeArr = newRouteInfo?.arrtime
-                routes[nodeIndex][routeN].routearrprevstationcnt = newRouteInfo?.arrprevstationcnt
-            }
-            nodeCount += 1
-        } else {
-            // 실패
-            nodeCount += 1
-        }
-
-        if nodeCount == nodes.count {
-            print("완료")
-            print(routes)
-            print("routes: ", routes)
-            routeTableView.reloadData()
-            nodeCount = 0
-        } else {
-            print("미완료")
-            print(nodeCount)
-        }
-    }
-
-    func secToMin(sec: Int?) -> String {
-        if sec == nil {
-            return "정보없음"
-        } else {
-            return String(sec! / 60) + "분"
-        }
-    }
 }
 
 // MARK: - UITableViewDelegate
 extension RouteListViewController: UITableViewDelegate {
 
     // 섹션, 루트 삭제 기능
-    //    func tableView(
-    //        _ tableView: UITableView,
-    //        commit editingStyle: UITableViewCell.EditingStyle,
-    //        forRowAt indexPath: IndexPath
-    //    ) {
-    //        if busStops[indexPath.section].routes.count == 1 {
-    //            // 섹션 제거
-    //            busStops.remove(at: indexPath.section)
-    //            tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
-    //        } else {
-    //            // 루트 제거
-    //            busStops[indexPath.section].routes.remove(at: indexPath.row - 1)
-    //            tableView.deleteRows(at: [indexPath], with: .automatic)
-    //        }
-    //    }
+    func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
+        if busStops[indexPath.section].routes.count == 1 {
+            // 섹션 제거
+            busStops.remove(at: indexPath.section)
+            tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+        } else {
+            // 루트 제거
+            busStops[indexPath.section].routes.remove(at: indexPath.row - 1)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 
     // 첫번째 셀은 삭제 불가능 - 정류장 이름 셀, 루트 차가하기 셀
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -224,15 +136,11 @@ extension RouteListViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if routeTableView.contentOffset.y > -40 {
             self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-            self.title = groupTitle
+            self.title = "포스텍"
         } else {
             self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
             self.title = .none
         }
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.section, indexPath.row)
     }
 }
 
@@ -243,7 +151,7 @@ extension RouteListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(
             withIdentifier: TitleHeader.identifier) as! TitleHeader
-        header.busStopLabel.text = groupTitle
+        header.busStopLabel.text = busStops[section].name
         return header
     }
 
@@ -254,24 +162,24 @@ extension RouteListViewController: UITableViewDataSource {
 
     // 섹션 수
     func numberOfSections(in tableView: UITableView) -> Int {
-        nodes.count + 1
+        busStops.count + 1
     }
 
     // 셀 수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == nodes.count ? 1 : routes[section].count + 1
+        section == busStops.count ? 1 : busStops[section].routes.count + 1
     }
 
     // 셀 높이
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        indexPath.section == nodes.count ?
+        indexPath.section == busStops.count ?
         addRouteCellHeight : indexPath.row == 0 ?
         routeHeaderCellHeight : routeCellHeight
     }
 
     // 셀 정의 - 마지막 섹션이면 루트 추가 셀 적용 / 기본 섹션이면 루트 셀 적용
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == nodes.count {
+        if indexPath.section == busStops.count {
             // 마지막 섹션
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: AddRouteCell.identifier,
@@ -284,7 +192,7 @@ extension RouteListViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: BusStopCell.identifier,
                     for: indexPath) as! BusStopCell
-                cell.busStopLabel.text = nodes[indexPath.section].nodeNm
+                cell.busStopLabel.text = busStops[indexPath.section].name
                 cell.selectionStyle = .none
                 return cell
             } else {
@@ -292,13 +200,12 @@ extension RouteListViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(
                     withIdentifier: RouteCell.identifier,
                     for: indexPath) as! RouteCell
-
-                let route = routes[indexPath.section][indexPath.row - 1]
-                cell.busNumberLabel.text = String(route.routeNo)
-                cell.arrprevstationcnt = route.routearrprevstationcnt ?? 1000
-                cell.arrTime = secToMin(sec: route.routeArr)
-                cell.nextArrTime = secToMin(sec: route.routeNaextArr)
+                let route = busStops[indexPath.section].routes[indexPath.row - 1]
                 cell.selectionStyle = .none
+                cell.setCell(
+                    busNumber: route.busNumber,
+                    busRemainingTime: route.busRemainingTime,
+                    nextBusRemainingTime: route.nextBusRemainingTimeLabel)
                 return cell
             }
         }
