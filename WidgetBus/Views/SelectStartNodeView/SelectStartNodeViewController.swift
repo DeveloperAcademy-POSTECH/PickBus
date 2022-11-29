@@ -135,7 +135,7 @@ final class SelectStartNodeViewController: UIViewController, UITableViewDelegate
     private func addDefaultKeyboardObserver() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(keyboardWillHide(_:)),
+            selector: #selector(keyboardWillHide),
             name: UIResponder.keyboardWillHideNotification,
             object: nil
         )

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091BF3D0292F707E004B8275 /* BackgroundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091BF3CF292F707E004B8275 /* BackgroundViewController.swift */; };
 		099287E42924B22A00CB7DBE /* ArrivalNodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099287E32924B22A00CB7DBE /* ArrivalNodeModel.swift */; };
 		099287E72924B23800CB7DBE /* ArrivalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099287E52924B23800CB7DBE /* ArrivalTableViewCell.swift */; };
 		099287E82924B23800CB7DBE /* SelectArrivalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099287E62924B23800CB7DBE /* SelectArrivalViewController.swift */; };
@@ -80,6 +81,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		091BF3CF292F707E004B8275 /* BackgroundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundViewController.swift; sourceTree = "<group>"; };
 		099287E32924B22A00CB7DBE /* ArrivalNodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalNodeModel.swift; sourceTree = "<group>"; };
 		099287E52924B23800CB7DBE /* ArrivalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrivalTableViewCell.swift; sourceTree = "<group>"; };
 		099287E62924B23800CB7DBE /* SelectArrivalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectArrivalViewController.swift; sourceTree = "<group>"; };
@@ -362,6 +364,7 @@
 				CFD79B02291E44020091202C /* SelectRouteNumberView */,
 				096B55C8292213D100B328A0 /* SelectArrivalView */,
 				E1707847291EC291001D324C /* RouteDetailView */,
+				091BF3CF292F707E004B8275 /* BackgroundViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				C16920612907B75C0021D17F /* AppDelegate.swift in Sources */,
 				C16920632907B75C0021D17F /* SceneDelegate.swift in Sources */,
 				CF3D0A362929B4C500639E5C /* CityCode.swift in Sources */,
+				091BF3D0292F707E004B8275 /* BackgroundViewController.swift in Sources */,
 				CFEC63F52928BF3F00B75795 /* BusCoreDataModel.xcdatamodeld in Sources */,
 				C175CD0D292B719900140CDC /* GroupTableViewCell.swift in Sources */,
 			);

@@ -25,10 +25,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="288" height="32.333333333333336"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="P8a-71-kre" userLabel="Node Info Stack View">
-                                        <rect key="frame" x="8" y="0.0" width="69.333333333333329" height="32.333333333333336"/>
+                                        <rect key="frame" x="8" y="0.0" width="86" height="32.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="정류장 이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aPW-LQ-Mmw">
-                                                <rect key="frame" x="0.0" y="0.0" width="69.333333333333329" height="14.333333333333334"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="86" height="14"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
@@ -64,6 +64,9 @@
                                     <constraint firstAttribute="width" secondItem="1TU-A3-Kdf" secondAttribute="height" multiplier="32:29" id="0Oh-5I-8td"/>
                                 </constraints>
                                 <standardMapConfiguration key="preferredConfiguration"/>
+                                <connections>
+                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="GEr-Dy-ikZ"/>
+                                </connections>
                             </mapView>
                         </subviews>
                     </stackView>
