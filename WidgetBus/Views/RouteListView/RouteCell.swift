@@ -7,12 +7,30 @@
 
 import UIKit
 
-class RouteCell: UITableViewCell {
+final class RouteCell: UITableViewCell {
 
-    var busNumver: String = ""
+    // 남은 정류장
+    var arrprevstationcnt: Int = 1000
+
+    // 남은 시간
+    var arrTime: String = "" {
+        didSet {
+            switch arrprevstationcnt {
+            case 1:
+                busRemainingTimeLabel.text = "곧도착"
+            case 2:
+                busRemainingTimeLabel.text = "전전"
+            default:
+                busRemainingTimeLabel.text = arrTime
+            }
+        }
+    }
+
+    // 다음 남은 시간
+    var nextArrTime: String = ""
 
     // 버스번호
-    private lazy var busNumberLabel: UILabel = {
+    var busNumberLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.adjustsFontSizeToFitWidth = true
@@ -36,6 +54,7 @@ class RouteCell: UITableViewCell {
     // 버스남은시간
     private lazy var busRemainingTimeLabel: UILabel = {
         let label = UILabel()
+        label.text = arrTime
         label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +64,7 @@ class RouteCell: UITableViewCell {
     // 다음버스남은시간
     private lazy var nextBusRemainingTimeLabel: UILabel = {
         let label = UILabel()
+        label.text = nextArrTime
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = .duduGray
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -74,33 +94,33 @@ class RouteCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
     override func layoutSubviews() {
         super.layoutSubviews()
-
-        self.contentView.addSubview(busNumberBackgroundView)
-        self.contentView.addSubview(busNumberLabel)
-        self.contentView.addSubview(busRemainingTimeLabel)
-        self.contentView.addSubview(nextBusRemainingTimeLabel)
-        self.contentView.addSubview(rideButton)
+        self.addSubview(busNumberBackgroundView)
+        self.addSubview(busNumberLabel)
+        self.addSubview(busRemainingTimeLabel)
+        self.addSubview(nextBusRemainingTimeLabel)
+        self.addSubview(rideButton)
 
         NSLayoutConstraint.activate([
             // 버스번호 배경
-            busNumberBackgroundView.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            busNumberBackgroundView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             busNumberBackgroundView.leadingAnchor.constraint(
-                equalTo: self.contentView.leadingAnchor, constant: 16),
+                equalTo: self.leadingAnchor, constant: 16),
             busNumberBackgroundView.widthAnchor.constraint(equalToConstant: 80),
             busNumberBackgroundView.heightAnchor.constraint(equalToConstant: 30),
 
             // 버스번호
-            busNumberLabel.centerYAnchor.constraint(equalTo: self.busNumberBackgroundView.centerYAnchor),
+            busNumberLabel.centerYAnchor.constraint(equalTo: busNumberBackgroundView.centerYAnchor),
             busNumberLabel.centerXAnchor.constraint(equalTo: busNumberBackgroundView.centerXAnchor),
             busNumberLabel.widthAnchor.constraint(equalToConstant: 60),
             busNumberLabel.heightAnchor.constraint(equalToConstant: 30),
 
             // 버스남은시간
-            busRemainingTimeLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            busRemainingTimeLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             busRemainingTimeLabel.leadingAnchor.constraint(
-                equalTo: self.contentView.centerXAnchor, constant: -20),
+                equalTo: self.centerXAnchor, constant: -20),
 
             // 다음버스남은시간
             nextBusRemainingTimeLabel.bottomAnchor.constraint(
@@ -110,21 +130,14 @@ class RouteCell: UITableViewCell {
                 constant: 14),
 
             // 탑승버튼
-            rideButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
-            rideButton.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
+            rideButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            rideButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
             rideButton.widthAnchor.constraint(equalToConstant: 38),
             rideButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 
     @objc func pressedRideButton(_ sender: UIButton) {
-        print(busNumver)
-    }
-
-    func setCell(busNumber: String, busRemainingTime: String, nextBusRemainingTime: String) {
-        self.busNumver = busNumber
-        self.busNumberLabel.text = busNumber
-        self.busRemainingTimeLabel.text = busRemainingTime
-        self.nextBusRemainingTimeLabel.text = nextBusRemainingTime
+        // 버스번호 넘기면서 디테일뷰로 이동
     }
 }

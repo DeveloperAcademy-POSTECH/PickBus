@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddRouteCell: UITableViewCell {
+final class AddRouteCell: UITableViewCell {
 
     // 루트추가 이미지
     private let addImageView: UIImageView = {
@@ -39,17 +39,17 @@ class AddRouteCell: UITableViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.contentView.addSubview(addImageView)
-        self.contentView.addSubview(addLabel)
+        self.addSubview(addImageView)
+        self.addSubview(addLabel)
 
         NSLayoutConstraint.activate([
             // 플러스 이미지
-            addImageView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
-            addImageView.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            addImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+            addImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 
             // 플러스 라벨
-            addLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
-            addLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
+            addLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
+            addLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }
 }

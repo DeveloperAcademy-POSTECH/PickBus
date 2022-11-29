@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BusStopCell: UITableViewCell {
+final class BusStopCell: UITableViewCell {
 
     var isNoti: Bool = false
 
@@ -41,17 +41,17 @@ class BusStopCell: UITableViewCell {
     }
 
     override func layoutSubviews() {
-        self.contentView.addSubview(busStopLabel)
-        self.contentView.addSubview(notiButton)
+        self.addSubview(busStopLabel)
+        self.addSubview(notiButton)
 
         NSLayoutConstraint.activate([
             // 버스정류장 라벨
-            busStopLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            busStopLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            busStopLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
+            busStopLabel.bottomAnchor.constraint(equalTo:self.bottomAnchor),
 
             // 알림 버튼
-            notiButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
-            notiButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            notiButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
+            notiButton.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 
