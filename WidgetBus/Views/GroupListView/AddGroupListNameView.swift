@@ -175,10 +175,22 @@ extension AddGroupListNameViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String
     ) -> Bool {
+        let text = (groupListTextfield.text! as NSString).replacingCharacters(in: range, with: string)
         guard groupListTextfield.text!.count < 17 else { return false }
-        navigationItem.rightBarButtonItem?.isEnabled = true
+
+        if !text.isEmpty == true {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+
         return true
     }
+
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+            return true
+        }
 }
 
 private extension AddGroupListNameViewController {
