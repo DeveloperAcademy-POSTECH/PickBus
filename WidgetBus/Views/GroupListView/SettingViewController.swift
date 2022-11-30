@@ -12,16 +12,35 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
 
     let notiLabel: UILabel = {
         let noti = UILabel()
-        noti.text = "알림 설정 Off"
-        noti.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        noti.text = "알림을 켜주세요."
+        noti.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+
+        noti.translatesAutoresizingMaskIntoConstraints = false
         return noti
     }()
 
-    lazy var notiSetting: UISwitch = {
-        let noti = UISwitch()
-        noti.tintColor = UIColor.green
-        noti.isOn = false
-        noti.addTarget(self, action: #selector(onClickSwitch(sender:)), for: UIControl.Event.valueChanged)
+    let notiDetailLabel: UILabel = {
+        let noti = UILabel()
+        noti.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
+        noti.numberOfLines = 2
+        noti.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+
+        noti.translatesAutoresizingMaskIntoConstraints = false
+        return noti
+    }()
+
+     lazy var notiButton: UIButton = {
+        let noti = UIButton()
+        noti.tintColor = .duduDeepBlue
+        noti.setTitle("설정으로", for: .normal)
+        noti.setTitleColor(.white, for: .normal)
+        noti.backgroundColor = .duduDeepBlue
+        noti.layer.cornerRadius = 15
+        noti.layer.borderWidth = 1
+        noti.layer.borderColor = UIColor.black.cgColor
+
+        noti.translatesAutoresizingMaskIntoConstraints = false
+         noti.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
         return noti
     }()
 
@@ -30,40 +49,32 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
         view.backgroundColor = .white
         setupLayout()
         setupNavigationController()
-        let notiText: UILabel = notiLabel
 
+        let notiLabel: UILabel = notiLabel
+        let notiDetailLabel: UILabel = notiDetailLabel
         let isPushOn = UIApplication.shared.isRegisteredForRemoteNotifications
-
-        if isPushOn {
+        if isPushOn == true {
             print("push on")
+
             // disable
-            UIApplication.shared.unregisterForRemoteNotifications()
-            notiText.text = "알림 설정 On"
+            notiLabel.text = "알림이 켜져있습니다."
+            notiDetailLabel.text = "앱의 알림을 수정하시고 싶으시면 iOS설정에서 수정해주세요."
         } else {
             print("push off")
             // enable
-            UIApplication.shared.registerForRemoteNotifications()
-            notiText.text = "알림 설정 Off"
+            notiLabel.text = "알림을 켜주세요."
+            notiDetailLabel.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
         }
+
     }
 
-    @objc func onClickSwitch(sender: UISwitch) {
-        let notiText: UILabel = notiLabel
-
-           if sender.isOn {
-               if let appSettings = NSURL(string: UIApplication.openSettingsURLString) {
-                   UIApplication.shared.open(appSettings as URL)
-               }
-               notiText.text = "알림 설정 On"
-               UNUserNotificationCenter.current().delegate = self
-           } else {
-               if let appSettings = NSURL(string: UIApplication.openSettingsURLString) {
-                   UIApplication.shared.open(appSettings as URL)
-               }
-               notiText.text = "알림 설정 Off"
-           }
-       }
+    @objc func tapButton(sender: UIButton) {
+        if let appSettings = NSURL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(appSettings as URL)
+        }
+    }
 }
+
 private extension SettingViewController {
     func setupNavigationController() {
         let button = UIButton(type: .system)
@@ -80,14 +91,18 @@ private extension SettingViewController {
 
 private extension SettingViewController {
     func setupLayout() {
-        view.addSubview(notiSetting)
-        notiSetting.translatesAutoresizingMaskIntoConstraints = false
-        notiSetting.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        notiSetting.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-
         view.addSubview(notiLabel)
-        notiLabel.translatesAutoresizingMaskIntoConstraints = false
-        notiLabel.topAnchor.constraint(equalTo: notiSetting.topAnchor).isActive = true
+        notiLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         notiLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
+
+        view.addSubview(notiDetailLabel)
+        notiDetailLabel.topAnchor.constraint(equalTo: notiLabel.topAnchor, constant: 35).isActive = true
+        notiDetailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22).isActive = true
+
+        view.addSubview(notiButton)
+        notiButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        notiButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        notiButton.topAnchor.constraint(equalTo: notiLabel.topAnchor, constant: 65).isActive = true
+        notiButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80).isActive = true
     }
 }
