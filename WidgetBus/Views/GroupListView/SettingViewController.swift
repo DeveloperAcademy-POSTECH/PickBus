@@ -48,15 +48,34 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
         super.viewDidLoad()
         view.backgroundColor = .white
         setupNavigationController()
-
-        // 사용자 권한 받기
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound],
-            completionHandler: {didAllow, error  in
-            print(didAllow)
-            print(error as Any)
-        })
-        UNUserNotificationCenter.current().delegate = self
         setupLayout()
+
+        let current = UNUserNotificationCenter.current()
+
+        current.getNotificationSettings(completionHandler: { (settings) in
+            if settings.authorizationStatus == .notDetermined {
+                // 알람 권한 알림
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound],
+                    completionHandler: {didAllow, error  in
+                    print(didAllow)
+                    print(error as Any)
+                })
+            } else if settings.authorizationStatus == .denied {
+                // 알람 거부
+                DispatchQueue.main.async {
+                    self.notiLabel.text = "알림을 켜주세요."
+                    self.notiDetailLabel.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
+                }
+            } else if settings.authorizationStatus == .authorized {
+                // 알림 허용
+                DispatchQueue.main.async {
+                    self.notiLabel.text = "알림이 켜져있습니다."
+                    self.notiDetailLabel.text = "앱의 알림을 수정하시고 싶으시면 \niOS설정에서 수정해주세요."
+                }
+            }
+        })
+
+        UNUserNotificationCenter.current().delegate = self
     }
 
     @objc func tapButton(sender: UIButton) {
@@ -93,7 +112,7 @@ private extension SettingViewController {
         view.addSubview(notiButton)
         notiButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         notiButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        notiButton.topAnchor.constraint(equalTo: notiLabel.topAnchor, constant: 65).isActive = true
+        notiButton.topAnchor.constraint(equalTo: notiLabel.topAnchor, constant: 75).isActive = true
         notiButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80).isActive = true
     }
 }
