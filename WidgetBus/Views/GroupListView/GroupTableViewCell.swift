@@ -9,17 +9,13 @@ import UIKit
 
 class GroupTableViewCell: UITableViewCell {
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupLayout()
-    }
-
-    let groupListLabel: UILabel = {
+    private lazy var groupListLabel: UILabel = {
         let label = UILabel()
-        label.text = "그룹명"
+        label.text = "루트그룹명"
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
+        
         label.backgroundColor = .duduDeepBlue
         label.layer.masksToBounds = true
         label.layer.borderWidth = 1
@@ -32,6 +28,11 @@ class GroupTableViewCell: UITableViewCell {
 
         return label
     }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupLayout()
+    }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
