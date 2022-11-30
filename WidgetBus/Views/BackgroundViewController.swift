@@ -28,11 +28,18 @@ class BackgroundViewController: UIViewController {
         return imageView
     }()
 
-    let bottomView: UIView = {
+    private let bottomBackgroundView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
+        view.clipsToBounds = true
         view.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         view.backgroundColor = .white
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    let contentView: UIView = {
+        let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -67,11 +74,19 @@ class BackgroundViewController: UIViewController {
         indicatorImage.centerXAnchor.constraint(equalTo: guide.centerXAnchor).isActive = true
         indicatorImage.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 78).isActive = true
 
-        view.addSubview(bottomView)
-        bottomView.topAnchor.constraint(equalTo: indicatorImage.bottomAnchor, constant: 8).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        bottomView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-        bottomView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+        view.addSubview(bottomBackgroundView)
+        bottomBackgroundView.topAnchor
+            .constraint(equalTo: indicatorImage.bottomAnchor, constant: 8).isActive = true
+        bottomBackgroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        bottomBackgroundView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        bottomBackgroundView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+
+        bottomBackgroundView.addSubview(contentView)
+        contentView.topAnchor.constraint(equalTo: bottomBackgroundView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: bottomBackgroundView.leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: bottomBackgroundView.trailingAnchor).isActive = true
+
     }
 }
 
