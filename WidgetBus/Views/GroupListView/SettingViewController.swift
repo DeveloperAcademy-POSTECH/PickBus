@@ -110,9 +110,9 @@ private extension SettingViewController {
         notiDetailLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 22).isActive = true
 
         view.addSubview(notiButton)
-        notiButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        notiButton.widthAnchor.constraint(equalToConstant: 150).isActive = true
         notiButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         notiButton.topAnchor.constraint(equalTo: notiLabel.topAnchor, constant: 75).isActive = true
-        notiButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80).isActive = true
+        notiButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40).isActive = true
     }
 }
