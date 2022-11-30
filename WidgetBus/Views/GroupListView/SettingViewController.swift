@@ -12,7 +12,7 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
 
     private lazy var notiLabel: UILabel = {
         let label = UILabel()
-        label.text = "알림을 켜주세요."
+        label.text = "알림을 설정해주세요."
         label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
 
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -47,23 +47,16 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setupLayout()
         setupNavigationController()
 
-        let notiLabel: UILabel = notiLabel
-        let notiDetailLabel: UILabel = notiDetailLabel
-        let isPushOn = UIApplication.shared.isRegisteredForRemoteNotifications
-
-        if isPushOn == true {
-            // disable
-            notiLabel.text = "알림이 켜져있습니다."
-            notiDetailLabel.text = "앱의 알림을 수정하시고 싶으시면 iOS설정에서 수정해주세요."
-        } else {
-            // enable
-            notiLabel.text = "알림을 켜주세요."
-            notiDetailLabel.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
-        }
-
+        // 사용자 권한 받기
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound],
+            completionHandler: {didAllow, error  in
+            print(didAllow)
+            print(error as Any)
+        })
+        UNUserNotificationCenter.current().delegate = self
+        setupLayout()
     }
 
     @objc func tapButton(sender: UIButton) {
