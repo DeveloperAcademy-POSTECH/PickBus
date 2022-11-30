@@ -10,38 +10,38 @@ import UserNotifications
 
 final class SettingViewController: UIViewController, UNUserNotificationCenterDelegate {
 
-    let notiLabel: UILabel = {
-        let noti = UILabel()
-        noti.text = "알림을 켜주세요."
-        noti.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
+    private lazy var notiLabel: UILabel = {
+        let label = UILabel()
+        label.text = "알림을 켜주세요."
+        label.font = UIFont.systemFont(ofSize: 30, weight: .semibold)
 
-        noti.translatesAutoresizingMaskIntoConstraints = false
-        return noti
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
-    let notiDetailLabel: UILabel = {
-        let noti = UILabel()
-        noti.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
-        noti.numberOfLines = 2
-        noti.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
+    private lazy var notiDetailLabel: UILabel = {
+        let label = UILabel()
+        label.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
+        label.numberOfLines = 2
+        label.font = UIFont.systemFont(ofSize: 15, weight: .semibold)
 
-        noti.translatesAutoresizingMaskIntoConstraints = false
-        return noti
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
 
-     lazy var notiButton: UIButton = {
-        let noti = UIButton()
-        noti.tintColor = .duduDeepBlue
-        noti.setTitle("설정으로", for: .normal)
-        noti.setTitleColor(.white, for: .normal)
-        noti.backgroundColor = .duduDeepBlue
-        noti.layer.cornerRadius = 15
-        noti.layer.borderWidth = 1
-        noti.layer.borderColor = UIColor.black.cgColor
+    lazy var notiButton: UIButton = {
+        let button = UIButton()
+        button.tintColor = .duduDeepBlue
+        button.setTitle("설정으로", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .duduDeepBlue
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.black.cgColor
 
-        noti.translatesAutoresizingMaskIntoConstraints = false
-         noti.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
-        return noti
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(tapButton(sender:)), for: .touchUpInside)
+        return button
     }()
 
     override func viewDidLoad() {
@@ -53,14 +53,12 @@ final class SettingViewController: UIViewController, UNUserNotificationCenterDel
         let notiLabel: UILabel = notiLabel
         let notiDetailLabel: UILabel = notiDetailLabel
         let isPushOn = UIApplication.shared.isRegisteredForRemoteNotifications
-        if isPushOn == true {
-            print("push on")
 
+        if isPushOn == true {
             // disable
             notiLabel.text = "알림이 켜져있습니다."
             notiDetailLabel.text = "앱의 알림을 수정하시고 싶으시면 iOS설정에서 수정해주세요."
         } else {
-            print("push off")
             // enable
             notiLabel.text = "알림을 켜주세요."
             notiDetailLabel.text = "앱의 알림을 받으려면 iOS설정에서 알림을 켜주세요."
