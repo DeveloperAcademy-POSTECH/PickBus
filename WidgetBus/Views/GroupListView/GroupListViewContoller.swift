@@ -175,7 +175,6 @@ extension GroupListViewContoller: UITableViewDelegate {
 
             self.navigationController?.pushViewController(addGroupListNameView, animated: true)
 
-
         } else {
             let settingView = SettingViewController()
             self.navigationController?.pushViewController(settingView, animated: true)

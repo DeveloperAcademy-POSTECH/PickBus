@@ -9,13 +9,13 @@ import UIKit
 
 class GroupTableViewCell: UITableViewCell {
 
-    private lazy var groupListLabel: UILabel = {
+        lazy var groupListLabel: UILabel = {
         let label = UILabel()
         label.text = "루트그룹명"
         label.font = .systemFont(ofSize: 30, weight: .bold)
         label.textColor = .white
         label.textAlignment = .center
-        
+
         label.backgroundColor = .duduDeepBlue
         label.layer.masksToBounds = true
         label.layer.borderWidth = 1

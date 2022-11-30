@@ -162,11 +162,8 @@ private extension AddGroupListNameViewController {
 
     }
 }
-extension AddGroupListNameViewController: UITextFieldDelegate {
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        navigationItem.rightBarButtonItem?.isEnabled = true
-    }
+extension AddGroupListNameViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.groupListTextfield.resignFirstResponder()
@@ -179,6 +176,7 @@ extension AddGroupListNameViewController: UITextFieldDelegate {
                    replacementString string: String
     ) -> Bool {
         guard groupListTextfield.text!.count < 17 else { return false }
+        navigationItem.rightBarButtonItem?.isEnabled = true
         return true
     }
 }
