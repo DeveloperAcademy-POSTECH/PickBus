@@ -67,6 +67,7 @@ final class AddGroupListNameViewController: UIViewController {
         groupListTextfield.layer.shadowRadius = 2
         groupListTextfield.borderStyle = .roundedRect
         groupListTextfield.clearButtonMode = .whileEditing
+        groupListTextfield.autocorrectionType = .no
 
         return groupListTextfield
     }()
