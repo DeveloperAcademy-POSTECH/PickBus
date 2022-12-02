@@ -31,19 +31,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="0ik-YK-i6y">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
-                            </stackView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="0ik-YK-i6y" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="8r0-zN-PFK"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0ik-YK-i6y" secondAttribute="trailing" id="Lax-zn-90d"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0ik-YK-i6y" secondAttribute="bottom" id="VqD-6E-vZE"/>
-                            <constraint firstItem="0ik-YK-i6y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="b2F-JC-l02"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zY3-15-RZ0"/>
                 </viewController>
